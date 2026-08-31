@@ -1,0 +1,120 @@
+@use './variables' as *;
+
+.education-container {
+    padding: $section-pad-y 10%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.education-card {
+    padding: 28px 32px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.education-card + .education-card {
+    margin-top: 20px;
+}
+
+.education-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.education-icon {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+
+    /* Height-based, so a wide school wordmark shows at a readable size rather
+       than shrinking to a 58px-wide sliver. */
+    img {
+        height: 46px;
+        width: auto;
+        max-width: 120px;
+        object-fit: contain;
+        display: block;
+        border-radius: 8px;
+    }
+}
+
+.education-heading {
+    flex: 1 1 auto;
+
+    h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+}
+
+.education-meta {
+    margin: 4px 0 0;
+    font-size: 0.9rem;
+    opacity: 0.65;
+}
+
+.education-gpa {
+    flex: 0 0 auto;
+    padding: 6px 14px;
+    border: 1px solid rgba($accent-bright, 0.6);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    color: #fff;
+}
+
+/* The pill already has a border, so the egg's dashed underline would double up. */
+.education-gpa.egg {
+    border-bottom-style: solid;
+}
+
+.education-degree {
+    margin: 22px 0 0;
+    font-size: 1.05rem;
+}
+
+.education-concentration {
+    margin: 6px 0 0;
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+/* ---- Light mode -------------------------------------------------------- */
+
+.light-mode {
+    .education-card {
+        background-color: rgba(0, 0, 0, 0.03);
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .education-gpa {
+        color: #0d1116;
+    }
+}
+
+@media screen {
+    @media (max-width: 768px) {
+        .education-container {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .education-card {
+            padding: 22px 20px;
+        }
+
+        .education-header {
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .education-heading {
+            flex: 1 1 60%;
+        }
+    }
+}

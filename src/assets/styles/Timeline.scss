@@ -1,3 +1,5 @@
+@use './variables' as *;
+
 .vertical-timeline span {
     color: white;
     font-family: 'Courier Prime', monospace;
@@ -29,6 +31,50 @@
 
 .svg-inline--fa {
     color: white;
+}
+
+/* On wide screens the library positions the date outside the white card, on the
+   page background - where white text vanished against the light page. */
+.light-mode .vertical-timeline-element .vertical-timeline-element-date {
+    color: #0d1116;
+}
+
+/* ---- Company marks ----------------------------------------------------- */
+
+.timeline-mark {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #fff;
+
+    /* Contained logos sit inside the circle with padding. Wordmarks are wide,
+       so give width a little more room than height. */
+    img {
+        max-width: 76%;
+        max-height: 66%;
+        object-fit: contain;
+    }
+}
+
+/* Artwork that carries its own background fills the whole circle instead. */
+.timeline-mark.is-full img {
+    max-width: none;
+    max-height: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.timeline-monogram {
+    font-family: 'Courier Prime', source-code-pro, monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: $accent;
 }
 
 @media screen and (max-width: 1170px) {

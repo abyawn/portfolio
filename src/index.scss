@@ -1,3 +1,5 @@
+@use './assets/styles/variables' as *;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -24,13 +26,31 @@ a {
 }
 
 a:hover {
-  color: #5000ca;
+  color: $accent;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
 
 p, a, h1, h2, h3, h4, h5, label, button {
   color: white;
   font-family: "Lato", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navigation.tsx toggles a `scrolled` class on this element; used here to lift
+   the bar once you leave the top. */
+.navbar-fixed-top {
+  transition: box-shadow 350ms ease, backdrop-filter 350ms ease;
+}
+
+.navbar-fixed-top.scrolled {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+.light-mode .navbar-fixed-top.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
 .navigation-bar {
@@ -42,10 +62,46 @@ p, a, h1, h2, h3, h4, h5, label, button {
     font-family: "Lato", sans-serif;
     text-transform: initial;
     padding: 6px 10px;
+    position: relative;
+    transition: color 250ms ease;
+  }
+
+  /* Underline grows out from the centre on hover. */
+  button::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    bottom: 2px;
+    height: 2px;
+    background-color: $accent;
+    transition: left 300ms cubic-bezier(0.16, 1, 0.3, 1),
+                right 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  button:hover::after {
+    left: 10px;
+    right: 10px;
+  }
+
+  /* The Resume item renders as an <a> (MUI Button with href), so the button
+     rules above skip it. Match the type and spacing here. */
+  .nav-resume {
+    font-size: 1.1rem;
+    font-family: "Lato", sans-serif;
+    text-transform: initial;
+    padding: 6px 10px;
   }
 
   svg {
     cursor: pointer;
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+                color 250ms ease;
+  }
+
+  svg:hover {
+    transform: rotate(25deg) scale(1.15);
+    color: $accent-bright;
   }
 }
 
@@ -56,8 +112,33 @@ p, a, h1, h2, h3, h4, h5, label, button {
   }
 }
 
+/* Every nav target, so a jump stops short of the fixed navbar instead of
+   sliding underneath it. */
+#about,
+#education,
+#career,
+#skills,
+#projects,
+#contact {
+  scroll-margin-top: 88px;
+}
+
+/* Section headings. The browser default puts 0.67em above and below a 2em
+   heading, and the space above only duplicates padding the section has already
+   provided. The hero's h1 is deliberately not in this list: it is display type
+   at 5em with its own margins in Main.scss. */
+.about-container h1,
+.education-container h1,
+.skills-container h1,
+.projects-container h1,
+.items-container h1 {
+  margin: 0 0 26px;
+}
+
 .container {
-  margin-top: 64px;
+  /* The hero carries its own top clearance in Main.scss; other sections do not
+     need it stacked on top of their own padding. */
+  margin-top: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -85,11 +166,61 @@ p, a, h1, h2, h3, h4, h5, label, button {
 }
 
 .items-container {
-  padding: 5% 10%;
+  padding: $section-pad-y 10%;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+/* ---- Easter eggs -------------------------------------------------------
+   Add `className="egg"`, a `data-egg` message and `tabIndex={0}` to anything
+   that should reveal a line on hover. Focusable so keyboard and touch users
+   can trigger it too. */
+
+.egg {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dashed rgba($accent-bright, 0.55);
+  outline: none;
+}
+
+.egg::after {
+  content: attr(data-egg);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  z-index: 20;
+  width: max-content;
+  max-width: 250px;
+  padding: 9px 13px;
+  border-radius: 8px;
+  background-color: $accent-deep;
+  border: 1px solid rgba($accent-bright, 0.55);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: normal;
+  text-align: center;
+  text-transform: none;
+  white-space: normal;
+  opacity: 0;
+  transform: translate(-50%, 5px);
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.egg:hover::after,
+.egg:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .egg::after { transition: none; }
 }
 
 .light-mode {
@@ -104,7 +235,7 @@ p, a, h1, h2, h3, h4, h5, label, button {
   }
 
   a:hover {
-    color: #5000ca;
+    color: $accent;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
   }
 
@@ -141,15 +272,28 @@ p, a, h1, h2, h3, h4, h5, label, button {
     border-right: 7px solid rgba(0, 0, 0, 0.08) !important;
   }
 
-  .flex-chips .chip-title {
-    color: #0d1116;
-  }
 }
 
 @media screen {
   @media (max-width: 768px) {
     .items-container {
-      padding: 5% 5%;
+      padding: $section-pad-y 5%;
     }
+  }
+}
+
+/* Respect the OS-level "reduce motion" setting. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {
   Main,
+  About,
+  Education,
   Timeline,
   Expertise,
   Project,
@@ -9,10 +11,13 @@ import {
   Footer,
 } from "./components";
 import FadeIn from './components/FadeIn';
+import Reveal from './components/Reveal';
+import LoadingScreen from './components/LoadingScreen';
 import './index.scss';
 
 function App() {
     const [mode, setMode] = useState<string>('dark');
+    const [loading, setLoading] = useState<boolean>(true);
 
     const handleModeChange = () => {
         if (mode === 'dark') {
@@ -27,17 +32,34 @@ function App() {
       }, []);
 
     return (
-    <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
+    <>
+    {loading && <LoadingScreen onFinish={() => setLoading(false)}/>}
+    {/* `is-loaded` holds the hero entrance animations back until the splash is
+        gone, so they aren't spent behind it. */}
+    <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}${loading ? '' : ' is-loaded'}`}>
         <Navigation parentToChild={{mode}} modeChange={handleModeChange}/>
-        <FadeIn transitionDuration={700}>
-            <Main/>
-            <Expertise/>
-            <Timeline/>
-            <Project/>
-            <Contact/>
+        {/* The hero is above the fold, so it animates as soon as the splash
+            clears. Everything below waits until it is scrolled into view. */}
+        <FadeIn transitionDuration={700} visible={!loading}>
+            <Main started={!loading}/>
         </FadeIn>
+        {/* About, Education and Expertise stagger their own children, so they
+            must NOT be wrapped again here - a parent Reveal sits at opacity 0
+            while the children's observers fire anyway, spending the whole
+            stagger invisibly. Only sections that animate as one block are
+            wrapped. */}
+        <About/>
+        <Education/>
+        <Reveal><Timeline/></Reveal>
+        <Expertise/>
+        <Project/>
+        {/* Deliberately not wrapped: it is the jump target for the nav, and
+            animating a section you have just scrolled to lands you on blank
+            space that then slides in under you. */}
+        <Contact/>
         <Footer />
     </div>
+    </>
     );
 }
 

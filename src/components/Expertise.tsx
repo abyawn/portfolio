@@ -1,87 +1,83 @@
 import React from "react";
 import '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReact, faDocker, faPython } from '@fortawesome/free-brands-svg-icons';
+import { faUsers, faChartLine, faRobot } from '@fortawesome/free-solid-svg-icons';
 import Chip from '@mui/material/Chip';
+import Reveal from './Reveal';
 import '../assets/styles/Expertise.scss';
 
 const labelsFirst = [
-    "React",
-    "TypeScript",
-    "JavaScript",
-    "HTML5",
-    "CSS3",
-    "SASS",
-    "Flask",
-    "Python",
-    "SQL",
-    "PostgreSQL",
-    "Postman"
+    "Agile",
+    "Jira",
+    "Pendo",
+    "Scrum",
+    "Stakeholder Management",
+    "Process Ops",
 ];
 
 const labelsSecond = [
-    "Git",
-    "GitHub Actions",
-    "Docker",
-    "AWS",
-    "Azure",
-    "Linux",
-    "Snowflake",
-    "Pandas",
-    "Selenium",
+    "SQL",
+    "Python",
+    "Excel",
+    "Power BI",
+    "Miro",
 ];
 
 const labelsThird = [
-    "OpenAI",
-    "Groq",
-    "LangChain",
-    "Qdrant",
-    "Hugging Face",
-    "LlamaIndex",
-    "Streamlit",
+    "Copilot Studio",
+    "SAP",
+    "Claude Code",
+    "Tech Strategy",
+    "RFP Support",
 ];
 
 function Expertise() {
     return (
-    <div className="container" id="expertise">
+    <div className="container" id="skills">
         <div className="skills-container">
-            <h1>Expertise</h1>
+            <Reveal><h1>Skills</h1></Reveal>
             <div className="skills-grid">
-                <div className="skill">
-                    <FontAwesomeIcon icon={faReact} size="3x"/>
-                    <h3>Full Stack Web Development</h3>
-                    <p>I have built a diverse array of web applications from scratch using modern technologies such as React and Flask. I have a strong proficiency in the SDLC process and frontend + backend development.</p>
+                <Reveal className="skill" delay={0}>
+                    <FontAwesomeIcon icon={faUsers} size="3x"/>
+                    <h3>Product &amp; Program Management</h3>
+                    <p>
+                        <span className="skill-lead">I'm really good at</span>
+                        turning product research and analytics into sprint plans people can actually run.
+                    </p>
                     <div className="flex-chips">
-                        <span className="chip-title">Tech stack:</span>
                         {labelsFirst.map((label, index) => (
                             <Chip key={index} className='chip' label={label} />
                         ))}
                     </div>
-                </div>
+                </Reveal>
 
-                <div className="skill">
-                    <FontAwesomeIcon icon={faDocker} size="3x"/>
-                    <h3>DevOps & Automation</h3>
-                    <p>Once the application is built, I help clients set up DevOps testing, CI/CD pipelines, and deployment automation to support the successful Go-Live.</p>
+                <Reveal className="skill" delay={120}>
+                    <FontAwesomeIcon icon={faChartLine} size="3x"/>
+                    <h3>Data &amp; Business Analysis</h3>
+                    <p>
+                        <span className="skill-lead">Ask me about</span>
+                        the dashboard that finally made the number make sense.
+                    </p>
                     <div className="flex-chips">
-                        <span className="chip-title">Tech stack:</span>
                         {labelsSecond.map((label, index) => (
                             <Chip key={index} className='chip' label={label} />
                         ))}
                     </div>
-                </div>
+                </Reveal>
 
-                <div className="skill">
-                    <FontAwesomeIcon icon={faPython} size="3x"/>
-                    <h3>GenAI & LLM</h3>
-                    <p>Stay relevant in the market by leveraging the latest AI models in your projects. I have professional experience building enterprise grade GenAI-enabled solutions to empower intelligent decision making.</p>
+                <Reveal className="skill" delay={240}>
+                    <FontAwesomeIcon icon={faRobot} size="3x"/>
+                    <h3>Enterprise AI &amp; Tech Strategy</h3>
+                    <p>
+                        <span className="skill-lead">I'd rather</span>
+                        ship the AI agent than write the deck about the AI agent.
+                    </p>
                     <div className="flex-chips">
-                        <span className="chip-title">Tech stack:</span>
                         {labelsThird.map((label, index) => (
                             <Chip key={index} className='chip' label={label} />
                         ))}
                     </div>
-                </div>
+                </Reveal>
             </div>
         </div>
     </div>

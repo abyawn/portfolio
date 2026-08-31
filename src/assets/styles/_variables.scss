@@ -1,0 +1,27 @@
+// The single source of truth for the accent colour. Every stylesheet pulls
+// these in rather than repeating hex values, so changing the scheme is one
+// edit here instead of thirty across the project.
+//
+// If you swap these for another hue, check contrast rather than rotating the
+// hue directly: this purple pair happens to work both as a background under
+// white text and as text on white, which most hues do not manage at the same
+// lightness.
+
+// Deep purple. Used wherever the accent is a background under white text, or
+// text on a light background.
+$accent: #5000ca;
+
+// Bright purple. Used for text, borders and glows on the dark background,
+// where the deep shade would disappear.
+$accent-bright: #7b3fe4;
+
+// A desaturated near-black purple, for tooltip surfaces that need to sit above
+// the page without reading as a lit accent.
+$accent-deep: #2a1b45;
+
+// Breathing room at the top and bottom of every page section.
+//
+// This was `5%`, and percentage padding resolves against the container's WIDTH,
+// not its height - so it grew with the viewport instead of staying put. Clamped
+// to real units it stays where it is put.
+$section-pad-y: clamp(36px, 3.6vw, 58px);

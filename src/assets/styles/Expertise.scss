@@ -1,5 +1,7 @@
+@use './variables' as *;
+
 .skills-container {
-    padding: 5% 10%;
+    padding: $section-pad-y 10%;
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -8,29 +10,83 @@
         color: white;
     }
 }
-  
+
 .skills-container .skills-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 50px;
 }
-  
+
 .skills-container .skills-grid .skill {
-    align-items: center;
     text-align: left;
+    padding: 20px;
+
+    h3 {
+        margin-bottom: 8px;
+    }
+
+    /* Reserves the lead-in plus two lines, so the chip rows in all three cards
+       start at the same height whether the sentence wraps or not. */
+    > p {
+        min-height: 4.9em;
+        margin: 0;
+        line-height: 1.55;
+        opacity: 0.85;
+    }
+
+    /* The repeated opener is set apart so it reads as a refrain rather than
+       three separate first-person claims. */
+    .skill-lead {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $accent-bright;
+        opacity: 1;
+    }
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 350ms ease,
+                background-color 350ms ease,
+                box-shadow 350ms ease;
+
+    svg {
+        transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+                    color 400ms ease;
+    }
 }
-  
+
+.skills-container .skills-grid .skill:hover {
+    transform: translateY(-6px);
+    border-color: rgba($accent, 0.5);
+    background-color: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.skills-container .skills-grid .skill:hover svg {
+    transform: scale(1.12) rotate(-4deg);
+    color: $accent-bright;
+}
+
+.light-mode .skills-container .skills-grid .skill:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
 .chip {
     color: rgb(39, 40, 34) !important;
     background-color: white !important;
     font-size: 0.8rem !important;
     height: 25px !important;
-  
+
     span {
         font-family: 'Courier Prime', monospace;
         color: rgb(39, 40, 34);
     }
-  
+
     svg {
         height: 15px !important;
     }
@@ -38,16 +94,18 @@
 
 .flex-chips {
     line-height: 2;
-    margin: 0.5;
-
-    .chip-title {
-        color: white;
-        padding-right: 10px;
-    }
+    margin: 0.5rem 0 0;
 }
 
 .flex-chips .MuiChip-root {
     margin-right: 0.5em;
+    transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 200ms ease;
+}
+
+.flex-chips .MuiChip-root:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
 }
 
 .flex-chips .MuiChip-outlined {
@@ -67,11 +125,11 @@
             padding-left: 5%;
             padding-right: 5%;
         }
-    
+
         .skills-container .skills-grid {
             display: initial;
         }
-        
+
         .skills-container .skills-grid .skill {
             padding-bottom: 5%;
         }

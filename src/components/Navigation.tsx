@@ -17,7 +17,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 
 const drawerWidth = 240;
-const navItems = [['Expertise', 'expertise'], ['History', 'history'], ['Projects', 'projects'], ['Contact', 'contact']];
+// Order matches the order of the sections down the page.
+const navItems = [['About', 'about'], ['Education', 'education'], ['Career', 'career'], ['Skills', 'skills'], ['Projects', 'projects'], ['Contact', 'contact']];
+
+// Same Google Doc resume as the hero button (Main.tsx).
+const resumeUrl = 'https://docs.google.com/document/d/1qWF_o7Th-CAP7e68XQTjkqbWXVHufEtSLH_xufSPbcE/preview';
 
 function Navigation({parentToChild, modeChange}: any) {
 
@@ -46,15 +50,9 @@ function Navigation({parentToChild, modeChange}: any) {
     };
   }, []);
 
+  /** Where it stops is set by scroll-margin-top on the targets, in index.scss. */
   const scrollToSection = (section: string) => {
-    console.log(section)
-    const expertiseElement = document.getElementById(section);
-    if (expertiseElement) {
-      expertiseElement.scrollIntoView({ behavior: 'smooth' });
-      console.log('Scrolling to:', expertiseElement);  // Debugging: Ensure the element is found
-    } else {
-      console.error('Element with id "expertise" not found');  // Debugging: Log error if element is not found
-    }
+    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const drawer = (
@@ -69,6 +67,17 @@ function Navigation({parentToChild, modeChange}: any) {
             </ListItemButton>
           </ListItem>
         ))}
+        <ListItem disablePadding>
+          <ListItemButton
+            sx={{ textAlign: 'center' }}
+            component="a"
+            href={resumeUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <ListItemText primary="Resume" />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
@@ -98,6 +107,15 @@ function Navigation({parentToChild, modeChange}: any) {
                 {item[0]}
               </Button>
             ))}
+            <Button
+              className="nav-resume"
+              href={resumeUrl}
+              target="_blank"
+              rel="noreferrer"
+              sx={{ color: '#fff' }}
+            >
+              Resume
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>

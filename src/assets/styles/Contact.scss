@@ -1,3 +1,5 @@
+@use './variables' as *;
+
 .contact_wrapper svg {
   font-size: 1em;
   vertical-align: middle;
@@ -6,26 +8,79 @@
 
 .contact-form {
   padding-top: 20px;
+  width: 100% !important;
 
   button {
-    float: right;
     background-color: white;
     color: #050f0b;
+    /* Keeps its natural width when the address beside it is long. */
+    flex-shrink: 0;
   }
 
   button:hover {
-    background-color: #5000ca;
+    background-color: $accent;
     color: white;
   }
 
-  fieldset {
-    background-color: white;
+  button.Mui-disabled {
+    background-color: rgba(255, 255, 255, 0.4);
+    color: rgba(5, 15, 11, 0.6);
   }
 }
 
-label {
-  font-size: 1.2rem;
-  font-family: 'DomaineDispNar-Medium', sans-serif;
+/* ---- Fields ------------------------------------------------------------ */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Static label above the input. Colour comes from the global rule, so it
+   follows light and dark mode without extra work. */
+.field > label {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-family: 'Lato', sans-serif;
+  opacity: 0.85;
+}
+
+.field .MuiOutlinedInput-root {
+  background-color: white;
+  border-radius: 4px;
+}
+
+.field .MuiOutlinedInput-input {
+  color: #0d1116;
+}
+
+.field .MuiOutlinedInput-input::placeholder {
+  color: #6b7280;
+  opacity: 1;
+}
+
+/* The notch exists only to make room for a floating label. There isn't one
+   any more, so keep the border unbroken. */
+.field .MuiOutlinedInput-notchedOutline legend {
+  display: none;
+}
+
+.field .MuiOutlinedInput-notchedOutline {
+  top: 0;
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.field .Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: $accent;
+  border-width: 2px;
+}
+
+.field .Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #d3302f;
+}
+
+.field .MuiFormHelperText-root {
+  margin-left: 2px;
 }
 
 .form-flex {
@@ -34,15 +89,84 @@ label {
   padding-bottom: 15px;
 }
 
-.form-flex .MuiFormControl-root {
-  width: 100%;
-}
-
-form {
-  width: 100% !important;
-}
-
 .body-form {
-  width: 100% !important;
   margin-bottom: 15px !important;
+}
+
+/* ---- Actions ----------------------------------------------------------- */
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ---- Status ------------------------------------------------------------ */
+
+.form-status {
+  margin: 0;
+  padding-top: 14px;
+  font-size: 0.95rem;
+  min-height: 1.4em;
+}
+
+.form-status.is-opened {
+  color: #7ee0a1;
+}
+
+.form-status.is-error {
+  color: #ff8f8a;
+}
+
+.form-status a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* ---- Email fallback ---------------------------------------------------- */
+
+.contact-alt {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.65;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.light-mode {
+  .form-status.is-opened {
+    color: #1c7a44;
+  }
+
+  .form-status.is-error {
+    color: #b3261e;
+  }
+}
+
+@media screen {
+  @media (max-width: 567px) {
+    .form-flex {
+      display: block;
+    }
+
+    .form-flex .field {
+      margin-bottom: 15px;
+    }
+
+    /* Not enough width for the address and the button side by side, so they
+       stack. Reversed to keep the button above. */
+    .form-actions {
+      flex-direction: column-reverse;
+      align-items: flex-end;
+      gap: 14px;
+    }
+
+    .contact-alt {
+      align-self: flex-start;
+    }
+  }
 }
