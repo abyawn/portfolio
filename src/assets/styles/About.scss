@@ -32,9 +32,16 @@
     margin-top: 1.1em;
 }
 
-/* The parenthetical reads as one unit, so it wraps as one unit. */
-.about-ps {
-    white-space: nowrap;
+/* The email keeps the accent colour and an underline so it reads as a link
+   inside the justified paragraph. */
+.about-bio a {
+    color: $accent-bright;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.light-mode .about-bio a {
+    color: $accent;
 }
 
 /* ---- Carousel ---------------------------------------------------------- */

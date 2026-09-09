@@ -8,6 +8,11 @@ import '../assets/styles/About.scss';
 import photo1 from '../assets/images/gallery/photo1.jpg';
 import photo2 from '../assets/images/gallery/photo2.jpg';
 import photo3 from '../assets/images/gallery/photo3.jpg';
+import photo4 from '../assets/images/gallery/photo4.jpg';
+import photo5 from '../assets/images/gallery/photo5.jpg';
+import photo6 from '../assets/images/gallery/photo6.jpg';
+import photo7 from '../assets/images/gallery/photo7.jpg';
+import photo8 from '../assets/images/gallery/photo8.jpg';
 
 interface Photo {
   src: string;
@@ -15,11 +20,20 @@ interface Photo {
 }
 
 // Captions show on hover and in the lightbox, and are each slide's accessible
-// label - keep them meaningful. TODO: Abyan - adjust wording to taste.
+// label - keep them meaningful.
+//
+// Order is deliberate: the three work photos that lead are New York, Duluth and
+// Minnetonka, and the rest are interleaved so the travel shots and the office
+// ones alternate rather than clumping.
 const photos: Photo[] = [
   { src: photo1, caption: 'KPMG, New York' },
-  { src: photo2, caption: 'Downtown Minneapolis' },
+  { src: photo4, caption: 'Duluth, Minnesota' },
+  { src: photo5, caption: 'Lake Minnetonka, Minnesota' },
+  { src: photo6, caption: 'Cape Cod, Massachusetts' },
   { src: photo3, caption: 'RSM Plaza' },
+  { src: photo8, caption: 'Downtown Chicago, Illinois' },
+  { src: photo2, caption: 'Downtown Minneapolis' },
+  { src: photo7, caption: 'Big Sur, California' },
 ];
 
 /**
@@ -109,21 +123,22 @@ function About() {
 
         <div className="about-layout">
           <Reveal className="about-copy" delay={90}>
-            {/* TODO: Abyan - rewrite in your own voice. */}
             <p className="about-bio">
-              I'm a graduate student at Texas A&amp;M's Mays Business School studying
-              Management Information Systems, and a recent Bauer graduate from the
-              University of Houston. I care about the space where business problems
-              meet the systems built to solve them &mdash; product discovery, data that
-              actually informs a decision, and enterprise tooling that people are
-              willing to adopt.
+              I'm a graduate MIS student at Texas A&amp;M's Mays Business School and a
+              recent University of Houston Bauer graduate. My interests sit at the
+              intersection of business and technology, particularly product
+              management, technology consulting, data-driven decision making, and
+              enterprise systems. Through experiences across product, AI, and
+              technology advisory, I've enjoyed working on problems that require
+              understanding both the business need and how technology can
+              realistically solve it.
             </p>
             <p className="about-bio">
-              Outside of school I follow the work in enterprise AI closely, spend
-              time with family around Houston, and travel when the calendar allows.
-              A few of the roles and projects below say more about what that looks
-              like in practice{' '}
-              <span className="about-ps">(the contact form at the bottom is real)</span>.
+              Outside of work and school, I love traveling, playing basketball with
+              friends, keeping up with fantasy football, and recently getting into
+              mixed martial arts. Feel free to reach out at{' '}
+              <a href="mailto:abyanpatnam@gmail.com">abyanpatnam@gmail.com</a> for
+              anything!
             </p>
           </Reveal>
 
