@@ -7,12 +7,29 @@
     text-align: left;
 }
 
+/* Kept in a variable because the centring rule below has to subtract exactly
+   this much to work out a single column's width. */
+$grid-gap: 32px;
+
 .projects-container .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 32px;
+    grid-gap: $grid-gap;
     /* Cards fill the row height, so the skill pills line up across a pair. */
     align-items: stretch;
+}
+
+/* With an odd number of projects the final card is left stranded in the
+   left-hand column. Span it across the whole row and centre it at one column's
+   width, so it reads as deliberate rather than as a gap. Keyed on :nth-child
+   rather than a hard-coded count, so it switches itself off the moment a sixth
+   project is added. Only applies while the grid is actually two columns wide. */
+@media (min-width: 901px) {
+    .projects-container .projects-grid > .project-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        width: calc((100% - #{$grid-gap}) / 2);
+        margin-inline: auto;
+    }
 }
 
 .projects-empty {
