@@ -20,7 +20,7 @@ const SCHOOLS: School[] = [
   {
     logo: texasAmLogo,
     name: 'Texas A&M University',
-    meta: 'College Station, TX  ·  2025 - 2027',
+    meta: 'College Station, TX  ·  2026 - Present',
     degree: 'M.S. in Management Information Systems',
     sub: 'Mays Business School',
     award: 'GPA 4.0 / 4.0',
@@ -29,7 +29,7 @@ const SCHOOLS: School[] = [
   {
     logo: uhLogo,
     name: 'University of Houston',
-    meta: 'Houston, TX  ·  2022 - 2026',
+    meta: 'Houston, TX  ·  2022 - 2026',
     degree: 'B.B.A. in Management Information Systems',
     sub: 'UH Excellence Scholarship · KPMG Rise Cohort · RSM Academy Scholarship · Bauer Leadership',
     award: 'Magna Cum Laude',

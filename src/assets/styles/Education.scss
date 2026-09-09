@@ -26,20 +26,22 @@
     gap: 18px;
 }
 
+/* Fixed box for both logos, so whatever their native proportions they occupy
+   the same footprint and the headings beside them line up card to card. */
 .education-icon {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 52px;
 
-    /* Height-based, so a wide school wordmark shows at a readable size rather
-       than shrinking to a 58px-wide sliver. */
     img {
-        height: 46px;
-        width: auto;
-        max-width: 120px;
+        max-width: 100%;
+        max-height: 100%;
         object-fit: contain;
         display: block;
-        border-radius: 8px;
+        border-radius: 6px;
     }
 }
 

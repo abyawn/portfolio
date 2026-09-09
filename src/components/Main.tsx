@@ -56,7 +56,6 @@ function Main({ started = true }: Props) {
               staticLines={["Howdy!", "I'm Abyan Patnam"]}
             />
           </h1>
-          <p>MS in MIS Candidate @ Texas A&amp;M Mays Business School (2027) &middot; BBA in MIS @ University of Houston (2026)</p>
 
           <div className="mobile_social_icons">
             <a href="https://www.linkedin.com/in/abyanpatnam/" target="_blank" rel="noreferrer"><LinkedInIcon/></a>

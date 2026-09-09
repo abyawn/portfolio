@@ -63,6 +63,7 @@ const ROLES: Role[] = [
     location: "Chicago, IL",
     date: "Spring 2024",
     logo: pwcLogo,
+    fullBleed: true,
     blurb:
       "Delivered a strategy engagement for a nonprofit client, analyzing fundraising " +
       "data and shaping recommendations to grow and diversify donor revenue.",
