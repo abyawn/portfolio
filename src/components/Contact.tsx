@@ -5,11 +5,11 @@ import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
 import '../assets/styles/Contact.scss';
 
-// TODO: Abyan - put your real contact address here. It is used for the mailto
-// fallback below and shown as the "prefer email?" link.
-const EMAIL = 'YOUR_EMAIL_HERE';
+// Used both to build the mailto link the form hands off to, and as the visible
+// "prefer email?" address beside the send button.
+const EMAIL = 'abyanpatnam@gmail.com';
 
-type Status = 'idle' | 'opened' | 'error';
+type Status = 'idle' | 'opened';
 
 function Contact() {
   const [name, setName] = useState<string>('');
@@ -22,8 +22,12 @@ function Contact() {
 
   const [status, setStatus] = useState<Status>('idle');
 
-  // TODO: Abyan - swap this for EmailJS / Web3Forms if you want in-page delivery.
-  // For now the form composes a message and hands off to the visitor's mail client.
+  /**
+   * Composes the message and hands off to the visitor's own mail client. No
+   * third-party form service is involved, so there is nothing to maintain - but
+   * it does rely on the visitor having a mail handler configured. The address
+   * stays on screen beside the button so anyone it fails for can still copy it.
+   */
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -36,11 +40,6 @@ function Contact() {
     setMessageError(missingMessage);
 
     if (missingName || missingEmail || missingMessage) return;
-
-    if (EMAIL === 'YOUR_EMAIL_HERE') {
-      setStatus('error');
-      return;
-    }
 
     const subject = encodeURIComponent(`Portfolio message from ${name}`);
     const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
@@ -122,12 +121,6 @@ function Contact() {
 
             <p className={`form-status is-${status}`} role="status" aria-live="polite">
               {status === 'opened' && 'Your mail client should be opening with the message ready to send.'}
-              {status === 'error' && (
-                <>
-                  The form isn&apos;t wired up yet. Please email directly at{' '}
-                  <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
-                </>
-              )}
             </p>
           </Box>
         </div>
