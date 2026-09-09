@@ -18,7 +18,7 @@ interface ProjectItem {
 const projects: ProjectItem[] = [
     {
         title: "Project Gigavolt",
-        meta: "Enterprise Data Architecture & AI Retrieval  ·  Aug 2026 – Present",
+        meta: "Enterprise Data Architecture & AI Retrieval",
         bullets: [
             "Building a RAG pipeline that answers engineers' natural-language questions on 9.5K service records with citations",
             "Cleansed 5 fragmented ERP exports with SQL into a Bronze/Silver ELT lakehouse on AWS, resolving 16 data defects",
@@ -31,7 +31,7 @@ const projects: ProjectItem[] = [
     },
     {
         title: "Retail Growth Strategy Case Competition",
-        meta: "MBSA National Finalist  ·  March 2026",
+        meta: "MBSA National Finalist",
         bullets: [
             "Placed Top 6 nationally, presenting a restaurant expansion strategy to consultants from McKinsey, PwC, and Accenture",
             "Modeled 5 franchise portfolios at $7M+ revenue on a 2-year payback, reframing an 8-to-100 location goal into a phased plan",
@@ -43,7 +43,7 @@ const projects: ProjectItem[] = [
     },
     {
         title: "ForgeWorks Field Service Platform",
-        meta: "Bain & Company × Umbrage Case Competition  ·  October 2025",
+        meta: "Bain & Company × Umbrage Product Management Case Study",
         bullets: [
             "Led end-to-end product discovery for an industrial manufacturer whose aftermarket field service drove 35%+ of revenue at 2.5x equipment margins",
             "Mapped an 8-step legacy workflow to isolate root causes across dispatch, parts entry, and offline sync failures",
@@ -76,11 +76,8 @@ const projects: ProjectItem[] = [
         ],
     },
     {
-        // TODO: Abyan - your notes filed this under the same "Bain x Umbrage,
-        // October 2025" header as ForgeWorks, but it is clearly a different
-        // engagement. Fill in the real competition/sponsor and date below.
-        title: "Digital Loyalty & Rewards Program",
-        meta: "Case Competition  ·  2025",
+        title: "24Seven Loyalty Program Application",
+        meta: "Bain & Company × Umbrage Product Management Case Study",
         bullets: [
             "Designed a digital loyalty and rewards strategy for a large convenience retail chain, defining enrollment flows, cashback mechanics, and personalized incentives",
             "Mapped end-to-end journeys across in-store and digital touchpoints, identifying friction in enrollment, redemption, and engagement that limited adoption",
